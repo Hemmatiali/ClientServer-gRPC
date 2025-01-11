@@ -17,22 +17,22 @@ public class StudentService(IStudentRepository studentRepository, ILogger<Studen
     private readonly ILogger<StudentService> _logger = logger;
 
     /// <inheritdoc />
-    public async Task<IEnumerable<Student>> GetAllAsync()
+    public async Task<IEnumerable<StudentModel>> GetAllAsync()
     {
         return await _studentRepository.GetAllAsync();
     }
 
     /// <inheritdoc />
-    public async Task<Student> GetByIdAsync(int id)
+    public async Task<StudentModel> GetByIdAsync(int id)
     {
         return await _studentRepository.GetByIdAsync(id);
     }
 
     /// <inheritdoc />
-    public async Task<int> CreateAsync(Student student)
+    public async Task<int> CreateAsync(StudentModel studentModel)
     {
-        var result = await _studentRepository.CreateAsync(student);
-        _logger.LogDebug($"Student created with studentId {result}.");
+        var result = await _studentRepository.CreateAsync(studentModel);
+        _logger.LogDebug($"StudentModel created with studentId {result}.");
         return result;
     }
 
@@ -44,7 +44,7 @@ public class StudentService(IStudentRepository studentRepository, ILogger<Studen
     }
 
     /// <inheritdoc />
-    public async Task<bool> UpdateAsync(StudentForUpdate student)
+    public async Task<bool> UpdateAsync(StudentForUpdateModel student)
     {
         var result = await _studentRepository.UpdateAsync(student);
         return result == 1;

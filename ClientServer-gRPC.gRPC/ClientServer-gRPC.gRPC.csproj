@@ -1,23 +1,30 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
-  <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
-    <Nullable>enable</Nullable>
-    <ImplicitUsings>enable</ImplicitUsings>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <Protobuf Include="Protos\greet.proto" GrpcServices="Server" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.0">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+	</ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Grpc.AspNetCore" Version="2.57.0" />
-  </ItemGroup>
+	<ItemGroup>
+		<Protobuf Include="Protos\greet.proto" GrpcServices="Server" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\ClientServer-gRPC.BLL\ClientServer-gRPC.BLL.csproj" />
-    <ProjectReference Include="..\ClientServer-gRPC.DAL\ClientServer-gRPC.DAL.csproj" />
-    <ProjectReference Include="..\ClientServer-gRPC.Domain\ClientServer-gRPC.Domain.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Grpc.AspNetCore" Version="2.57.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\ClientServer-gRPC.BLL\ClientServer-gRPC.BLL.csproj" />
+		<ProjectReference Include="..\ClientServer-gRPC.DAL\ClientServer-gRPC.DAL.csproj" />
+		<ProjectReference Include="..\ClientServer-gRPC.Domain\ClientServer-gRPC.Domain.csproj" />
+	</ItemGroup>
 
 </Project>

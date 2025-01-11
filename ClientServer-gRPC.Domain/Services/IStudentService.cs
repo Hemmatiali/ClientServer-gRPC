@@ -14,25 +14,25 @@ public interface IStudentService
     ///     Retrieves all students asynchronously.
     /// </summary>
     /// <returns>A collection of all students.</returns>
-    Task<IEnumerable<Student>> GetAllAsync();
+    Task<IEnumerable<StudentModel>> GetAllAsync();
 
     /// <summary>
     ///     Retrieves a student by its unique identifier asynchronously.
     /// </summary>
     /// <param name="id">The unique identifier of the student.</param>
     /// <returns>The student entity if found.</returns>
-    Task<Student> GetByIdAsync(int id);
+    Task<StudentModel> GetByIdAsync(int id);
 
     #endregion
 
     #region Creation & Modification Methods
 
     /// <summary>
-    ///     Creates a new student record asynchronously.
+    ///     Creates a new studentModel record asynchronously.
     /// </summary>
-    /// <param name="student">The student to create.</param>
-    /// <returns>The ID of the newly created student.</returns>
-    Task<int> CreateAsync(Student student);
+    /// <param name="studentModel">The studentModel to create.</param>
+    /// <returns>The ID of the newly created studentModel.</returns>
+    Task<int> CreateAsync(StudentModel studentModel);
 
     /// <summary>
     ///     Deletes a student by its unique identifier asynchronously.
@@ -46,7 +46,7 @@ public interface IStudentService
     /// </summary>
     /// <param name="student">The updated student details.</param>
     /// <returns><c>true</c> if the operation was successful; otherwise, <c>false</c>.</returns>
-    Task<bool> UpdateAsync(StudentForUpdate student);
+    Task<bool> UpdateAsync(StudentForUpdateModel student);
 
     #endregion
 }
