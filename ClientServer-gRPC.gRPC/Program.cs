@@ -3,7 +3,6 @@ using ClientServer_gRPC.DAL;
 using ClientServer_gRPC.DAL.Repositories;
 using ClientServer_gRPC.Domain.Repositories;
 using ClientServer_gRPC.Domain.Services;
-using ClientServer_gRPC.gRPC.Services;
 using GrpcInfrastructures;
 using Interceptors;
 
@@ -26,7 +25,7 @@ var app = builder.Build();
 app.MapGrpcReflectionService();
 
 // Configure the HTTP request pipeline.
-app.MapGrpcService<GreeterService>();
+app.MapGrpcService<grpcServices.StudentService>();
 
 // Config minimal Apis
 app.MapGet("/protos", (ProtoFileProvider protoFileProvider) => Results.Ok((object?)protoFileProvider.GetAll()));
