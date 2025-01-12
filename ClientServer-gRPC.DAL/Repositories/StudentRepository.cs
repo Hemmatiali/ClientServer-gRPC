@@ -6,7 +6,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ClientServer_gRPC.DAL.Repositories;
 
-//todo xml
+/// <summary>
+///     Provides CRUD operations for student entities.
+/// </summary>
 public class StudentRepository(StudentDbContext studentDbContext) : IStudentRepository
 {
     // Injection
@@ -14,12 +16,14 @@ public class StudentRepository(StudentDbContext studentDbContext) : IStudentRepo
 
     #region Methods
 
+    /// <inheritdoc />
     public async Task<IEnumerable<StudentModel>> GetAllAsync()
     {
         return await _studentDbContext.Students.Include(c => c.PhoneNumbers).AsNoTracking()
             .Select(c => c.ToModel()).ToListAsync();
     }
 
+    /// <inheritdoc />
     public async Task<StudentModel> GetByIdAsync(int id)
     {
         return (await _studentDbContext.Students.Include(c => c.PhoneNumbers).AsNoTracking()
@@ -27,6 +31,7 @@ public class StudentRepository(StudentDbContext studentDbContext) : IStudentRepo
             .FirstOrDefaultAsync()).ToModel();
     }
 
+    /// <inheritdoc />
     public async Task<int> CreateAsync(StudentModel studentModel)
     {
         var student = new Student()
@@ -51,6 +56,7 @@ public class StudentRepository(StudentDbContext studentDbContext) : IStudentRepo
         return student.Id;
     }
 
+    /// <inheritdoc />
     public async Task<int> DeleteAsync(int id)
     {
         var student = new Student() { Id = id };
@@ -59,6 +65,7 @@ public class StudentRepository(StudentDbContext studentDbContext) : IStudentRepo
         return result;
     }
 
+    /// <inheritdoc />
     public async Task<int> UpdateAsync(StudentForUpdateModel studentForUpdate)
     {
         var student = new Student()

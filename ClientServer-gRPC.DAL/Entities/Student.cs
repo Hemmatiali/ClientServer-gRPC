@@ -1,6 +1,8 @@
 ﻿namespace ClientServer_gRPC.DAL.Entities;
 
-//todo xml
+/// <summary>
+///     Represents a student entity in the database.
+/// </summary>
 public class Student
 {
     public int Id { get; init; }

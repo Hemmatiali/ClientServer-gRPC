@@ -1,6 +1,8 @@
 ﻿namespace ClientServer_gRPC.DAL.Entities;
 
-//todo xml
+/// <summary>
+///     Represents a phone number entity in the database.
+/// </summary>
 public class PhoneNumber
 {
     public int Id { get; init; }

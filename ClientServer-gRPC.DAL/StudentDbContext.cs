@@ -3,7 +3,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ClientServer_gRPC.DAL;
 
-//todo xml
+/// <summary>
+///     Represents the database context for managing student-related data.
+/// </summary>
 public class StudentDbContext : DbContext
 {
     // Db sets
@@ -13,5 +15,10 @@ public class StudentDbContext : DbContext
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         optionsBuilder.UseSqlServer("Data Source=.\\MSSQLSERVER2;Initial Catalog=StudentDb;Integrated Security=True;Encrypt=False;Trust Server Certificate=True");
+    }
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<Student>().HasMany(c => c.PhoneNumbers).WithOne().OnDelete(DeleteBehavior.Cascade);
     }
 }

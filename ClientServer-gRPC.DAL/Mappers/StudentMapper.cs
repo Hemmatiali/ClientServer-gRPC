@@ -3,9 +3,16 @@ using ClientServer_gRPC.Domain.Models;
 
 namespace ClientServer_gRPC.DAL.Mappers;
 
-//todo xml
+/// <summary>
+///     Provides mapping extensions for student entities and models.
+/// </summary>
 public static class StudentMapper
 {
+    /// <summary>
+    ///     Converts a student entity to a student model.
+    /// </summary>
+    /// <param name="student">The student entity to convert.</param>
+    /// <returns>The converted student model.</returns>
     public static StudentModel ToModel(this Student student)
     {
         return new StudentModel()

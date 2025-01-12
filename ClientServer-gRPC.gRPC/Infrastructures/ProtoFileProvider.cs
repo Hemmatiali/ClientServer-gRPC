@@ -1,6 +1,8 @@
 ﻿namespace GrpcInfrastructures;
 
-//todo xml
+/// <summary>
+///     Provides functionalities to manage and access gRPC Proto files.
+/// </summary>
 public class ProtoFileProvider
 {
     private readonly string _contentRootPath;
