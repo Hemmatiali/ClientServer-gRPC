@@ -1,0 +1,74 @@
+﻿syntax = "proto3";
+package ClientServer_gRPC_Client.Protos.v1;
+
+option csharp_namespace = "ClientServer_gRPC_Client.DAL.Protos.v1";
+import "google/protobuf/empty.proto";
+
+service StudentService {
+    // Retrieves all students
+    rpc GetAll (google.protobuf.Empty) returns (stream StudentReply);
+
+    // Retrieves a student by ID
+    rpc GetById (GetByIdRequest) returns (StudentReply);
+
+    // Creates a new student
+    rpc Create (stream CreateStudentRequest) returns (stream CreateStudentResponse);
+
+    // Deletes a student by ID
+    rpc Delete (DeleteStudentRequest) returns (DeleteStudentResponse);
+
+    // Updates an existing student
+    rpc Update (UpdateStudentRequest) returns (UpdateStudentResponse);
+}
+
+// Reply message for student data
+message StudentReply {
+    int32 Id = 1;
+    string StudentNumber = 2;
+    string FirstName = 3;
+    string LastName = 4;
+    string Description = 5;
+    repeated string PhoneNumbers = 6;
+}
+
+// Request message for getting a student by ID
+message GetByIdRequest {
+    int32 Id = 1;
+}
+
+// Request message for creating a student
+message CreateStudentRequest {
+    string StudentNumber = 1;
+    string FirstName = 2;
+    string LastName = 3;
+    string Description = 4;
+    repeated string PhoneNumbers = 5;
+}
+
+// Response message for creating a student
+message CreateStudentResponse {
+    int32 Id = 1;
+}
+
+// Request message for deleting a student
+message DeleteStudentRequest {
+    int32 Id = 1;
+}
+
+// Response message for deleting a student
+message DeleteStudentResponse {
+    bool Success = 1;
+}
+
+// Request message for updating a student
+message UpdateStudentRequest {
+    int32 Id = 1;
+    string FirstName = 2;
+    string LastName = 3;
+    string Description = 4;
+}
+
+// Response message for updating a student
+message UpdateStudentResponse {
+    bool Success = 1;
+}

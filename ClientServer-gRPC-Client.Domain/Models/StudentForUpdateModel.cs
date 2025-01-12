@@ -1,4 +1,4 @@
-﻿namespace ClientServer_gRPC.Domain.Models;
+﻿namespace ClientServer_gRPC_Client.Domain.Models;
 
 /// <summary>
 ///     Represents a student entity for update operations. 
