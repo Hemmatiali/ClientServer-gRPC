@@ -1,5 +1,5 @@
 ﻿syntax = "proto3";
-package ClientServer_gRPC_Client.Protos.v1;
+package ClientServer_gRPC.gRPC.v1;
 
 option csharp_namespace = "ClientServer_gRPC_Client.DAL.Protos.v1";
 import "google/protobuf/empty.proto";

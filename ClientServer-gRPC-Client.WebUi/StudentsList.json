@@ -1,0 +1,26 @@
+[
+  {
+    "Id": 1,
+    "StudentNumber": "S12345",
+    "FirstName": "Ali",
+    "LastName": "Rezai",
+    "Description": "Top student in mathematics.",
+    "PhoneNumbers": ["09121234567", "09351234567"]
+  },
+  {
+    "Id": 2,
+    "StudentNumber": "S67890",
+    "FirstName": "Sara",
+    "LastName": "Ahmadi",
+    "Description": "Excellent in science projects.",
+    "PhoneNumbers": ["09221234567"]
+  },
+  {
+    "Id": 3,
+    "StudentNumber": "S54321",
+    "FirstName": "Reza",
+    "LastName": "Karimi",
+    "Description": "Captain of the football team.",
+    "PhoneNumbers": ["09331234567", "09131234567"]
+  }
+]

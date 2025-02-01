@@ -5,10 +5,7 @@ using Microsoft.Extensions.Logging;
 
 namespace ClientServer_gRPC_Client.BLL.Services;
 
-/// <summary>
-///     Provides implementation for <see cref="IStudentService"/>, 
-///     handling CRUD operations for students.
-/// </summary>//todo change these are for clients.
+/// <inheritdoc cref="IStudentService"/>
 public class StudentService(IStudentRepository studentRepository, ILogger<StudentService> logger)
     : IStudentService
 {

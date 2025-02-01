@@ -8,6 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\ClientServer-gRPC-Client.BLL\ClientServer-gRPC-Client.BLL.csproj" />
     <ProjectReference Include="..\ClientServer-gRPC-Client.DAL\ClientServer-gRPC-Client.DAL.csproj" />
     <ProjectReference Include="..\ClientServer-gRPC-Client.Domain\ClientServer-gRPC-Client.Domain.csproj" />

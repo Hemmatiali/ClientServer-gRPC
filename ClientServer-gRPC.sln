@@ -15,13 +15,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClientServer-gRPC.gRPC", "C
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "srcClient", "srcClient", "{8AFB7548-80F7-4024-B625-0035EFF394E5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientServer-gRPC-Client.BLL", "ClientServer-gRPC-Client.BLL\ClientServer-gRPC-Client.BLL.csproj", "{09B809CA-65D4-42BD-94A8-AA7403056518}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClientServer-gRPC-Client.BLL", "ClientServer-gRPC-Client.BLL\ClientServer-gRPC-Client.BLL.csproj", "{09B809CA-65D4-42BD-94A8-AA7403056518}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientServer-gRPC-Client.DAL", "ClientServer-gRPC-Client.DAL\ClientServer-gRPC-Client.DAL.csproj", "{284214E6-0FD6-4896-83C4-E5BDF5933D8A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClientServer-gRPC-Client.DAL", "ClientServer-gRPC-Client.DAL\ClientServer-gRPC-Client.DAL.csproj", "{284214E6-0FD6-4896-83C4-E5BDF5933D8A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientServer-gRPC-Client.Domain", "ClientServer-gRPC-Client.Domain\ClientServer-gRPC-Client.Domain.csproj", "{CE5F3CF8-E3D5-47EB-B916-E10A1D8CDBFA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClientServer-gRPC-Client.Domain", "ClientServer-gRPC-Client.Domain\ClientServer-gRPC-Client.Domain.csproj", "{CE5F3CF8-E3D5-47EB-B916-E10A1D8CDBFA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientServer-gRPC-Client.WebUi", "ClientServer-gRPC-Client.WebUi\ClientServer-gRPC-Client.WebUi.csproj", "{63D81E42-D757-4971-AB30-409B7F37BC79}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClientServer-gRPC-Client.WebUi", "ClientServer-gRPC-Client.WebUi\ClientServer-gRPC-Client.WebUi.csproj", "{63D81E42-D757-4971-AB30-409B7F37BC79}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

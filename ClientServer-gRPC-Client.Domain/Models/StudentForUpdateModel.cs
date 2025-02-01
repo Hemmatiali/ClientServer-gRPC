@@ -1,8 +1,8 @@
 ﻿namespace ClientServer_gRPC_Client.Domain.Models;
 
 /// <summary>
-///     Represents a student entity for update operations. 
-/// </summary>//todo change these are models
+///     Represents a student model for update operations.
+/// </summary>
 public record StudentForUpdateModel
 {
     public int Id { get; init; }

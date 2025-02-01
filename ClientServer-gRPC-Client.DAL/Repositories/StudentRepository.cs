@@ -1,101 +1,100 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ClientServer_gRPC_Client.DAL.Protos.v1;
+﻿using ClientServer_gRPC_Client.DAL.Protos.v1;
 using ClientServer_gRPC_Client.Domain.Models;
 using ClientServer_gRPC_Client.Domain.Repositories;
 using Grpc.Core;
 
-namespace ClientServer_gRPC_Client.DAL.Repositories
+namespace ClientServer_gRPC_Client.DAL.Repositories;
+
+/// <inheritdoc cref="IStudentRepository"/>
+public class StudentRepository : IStudentRepository
 {
-    //todo xml
-    public class StudentRepository : IStudentRepository
+    // Services
+    private readonly ClientServer_gRPC_Client.DAL.Protos.v1.StudentService.StudentServiceClient _studentServiceClient;
+
+    public StudentRepository(StudentService.StudentServiceClient studentServiceClient)
     {
-        // Services
-        private readonly ClientServer_gRPC_Client.DAL.Protos.v1.StudentService.StudentServiceClient _studentServiceClient;
+        _studentServiceClient = studentServiceClient;
+    }
 
-        public StudentRepository(StudentService.StudentServiceClient studentServiceClient)
+    /// <inheritdoc />
+    public async IAsyncEnumerable<StudentModel> GetAllAsync()
+    {
+        var request = _studentServiceClient.GetAll(new Google.Protobuf.WellKnownTypes.Empty());
+        while (await request.ResponseStream.MoveNext())
         {
-            _studentServiceClient = studentServiceClient;
-        }
-
-        public async IAsyncEnumerable<StudentModel> GetAllAsync()
-        {
-            var request = _studentServiceClient.GetAll(new Google.Protobuf.WellKnownTypes.Empty());
-            while (await request.ResponseStream.MoveNext())
+            var reply = request.ResponseStream.Current;
+            var student = new StudentModel()
             {
-                var reply = request.ResponseStream.Current;
-                var student = new StudentModel()
-                {
-                    Id = reply.Id,
-                    FirstName = reply.FirstName,
-                    LastName = reply.LastName,
-                    Description = reply.Description,
-                    StudentNumber = reply.StudentNumber
-                };
-
-                student.PhoneNumbers.AddRange(reply.PhoneNumbers);
-                yield return student;
-            }
-        }
-
-        public async Task<StudentModel> GetByIdAsync(int id)
-        {
-            var result = await _studentServiceClient.GetByIdAsync(new GetByIdRequest() { Id = id });
-            var finalResult = new StudentModel()
-            {
-                Id = result.Id,
-                FirstName = result.FirstName,
-                LastName = result.LastName,
-                Description = result.Description,
-                StudentNumber = result.StudentNumber
+                Id = reply.Id,
+                FirstName = reply.FirstName,
+                LastName = reply.LastName,
+                Description = reply.Description,
+                StudentNumber = reply.StudentNumber
             };
 
-            finalResult.PhoneNumbers.AddRange(result.PhoneNumbers);
-            return finalResult;
+            student.PhoneNumbers.AddRange(reply.PhoneNumbers);
+            yield return student;
         }
+    }
 
-        public async IAsyncEnumerable<int> CreateAsync(IEnumerable<StudentModel> students)
+    /// <inheritdoc />
+    public async Task<StudentModel> GetByIdAsync(int id)
+    {
+        var result = await _studentServiceClient.GetByIdAsync(new GetByIdRequest() { Id = id });
+        var finalResult = new StudentModel()
         {
-            var request = _studentServiceClient.Create();
-            foreach (var student in students)
-            {
-                CreateStudentRequest studentRequest = new CreateStudentRequest()
-                {
-                    FirstName = student.FirstName,
-                    LastName = student.LastName,
-                    Description = student.Description,
-                    StudentNumber = student.StudentNumber,
-                };
+            Id = result.Id,
+            FirstName = result.FirstName,
+            LastName = result.LastName,
+            Description = result.Description,
+            StudentNumber = result.StudentNumber
+        };
 
-                studentRequest.PhoneNumbers.AddRange(student.PhoneNumbers);
-                await request.RequestStream.WriteAsync(studentRequest);
-            }
+        finalResult.PhoneNumbers.AddRange(result.PhoneNumbers);
+        return finalResult;
+    }
 
-            await request.RequestStream.CompleteAsync();
-            while (await request.ResponseStream.MoveNext())
-            {
-                var studentResponse = request.ResponseStream.Current;
-                yield return studentResponse.Id;
-            }
-        }
-
-        public async Task DeleteAsync(int id)
+    /// <inheritdoc />
+    public async IAsyncEnumerable<int> CreateAsync(IEnumerable<StudentModel> students)
+    {
+        var request = _studentServiceClient.Create();
+        foreach (var student in students)
         {
-            await _studentServiceClient.DeleteAsync(new DeleteStudentRequest() { Id = id });
-        }
-
-        public async Task UpdateAsync(StudentForUpdateModel student)
-        {
-            await _studentServiceClient.UpdateAsync(new UpdateStudentRequest()
+            CreateStudentRequest studentRequest = new CreateStudentRequest()
             {
-                Id = student.Id,
                 FirstName = student.FirstName,
                 LastName = student.LastName,
-                Description = student.Description
-            });
+                Description = student.Description,
+                StudentNumber = student.StudentNumber,
+            };
+
+            studentRequest.PhoneNumbers.AddRange(student.PhoneNumbers);
+            await request.RequestStream.WriteAsync(studentRequest);
         }
+
+        await request.RequestStream.CompleteAsync();
+        while (await request.ResponseStream.MoveNext())
+        {
+            var studentResponse = request.ResponseStream.Current;
+            yield return studentResponse.Id;
+        }
+    }
+
+    /// <inheritdoc />
+    public async Task DeleteAsync(int id)
+    {
+        await _studentServiceClient.DeleteAsync(new DeleteStudentRequest() { Id = id });
+    }
+
+    /// <inheritdoc />
+    public async Task UpdateAsync(StudentForUpdateModel student)
+    {
+        await _studentServiceClient.UpdateAsync(new UpdateStudentRequest()
+        {
+            Id = student.Id,
+            FirstName = student.FirstName,
+            LastName = student.LastName,
+            Description = student.Description
+        });
     }
 }

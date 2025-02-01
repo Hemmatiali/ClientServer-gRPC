@@ -6,6 +6,9 @@ using Grpc.Core;
 
 namespace grpcServices;
 
+/// <summary>
+///     gRPC service for student operations.
+/// </summary>
 public class StudentService(IStudentService studentService)
     : ClientServer_gRPC.gRPC.Protos.v1.StudentService.StudentServiceBase
 {
@@ -14,6 +17,9 @@ public class StudentService(IStudentService studentService)
 
     #region Methods
 
+    /// <summary>
+    ///     Streams all students.
+    /// </summary>
     public override async Task GetAll(Empty request, IServerStreamWriter<StudentReply> responseStream, ServerCallContext context)
     {
         var students = await _studentService.GetAllAsync();
@@ -34,6 +40,9 @@ public class StudentService(IStudentService studentService)
         await Task.CompletedTask;
     }
 
+    /// <summary>
+    ///     Retrieves a student by ID.
+    /// </summary>
     public override async Task<StudentReply> GetById(GetByIdRequest request, ServerCallContext context)
     {
         var student = await _studentService.GetByIdAsync(request.Id);
@@ -55,6 +64,9 @@ public class StudentService(IStudentService studentService)
         return reply;
     }
 
+    /// <summary>
+    ///     Creates students from a stream.
+    /// </summary>
     public override async Task Create(IAsyncStreamReader<CreateStudentRequest> requestStream, IServerStreamWriter<CreateStudentResponse> responseStream, ServerCallContext context)
     {
         await foreach (var item in requestStream.ReadAllAsync())
@@ -77,6 +89,9 @@ public class StudentService(IStudentService studentService)
         await Task.CompletedTask;
     }
 
+    /// <summary>
+    ///     Updates a student.
+    /// </summary>
     public override async Task<UpdateStudentResponse> Update(UpdateStudentRequest request, ServerCallContext context)
     {
         var serviceResult = await _studentService.UpdateAsync(new StudentForUpdateModel()
@@ -92,6 +107,9 @@ public class StudentService(IStudentService studentService)
         };
     }
 
+    /// <summary>
+    ///     Deletes a student by ID.
+    /// </summary>
     public override async Task<DeleteStudentResponse> Delete(DeleteStudentRequest request, ServerCallContext context)
     {
         var serviceResult = await _studentService.DeleteAsync(request.Id);

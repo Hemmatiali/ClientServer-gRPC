@@ -1,10 +1,8 @@
 ﻿namespace ClientServer_gRPC.Domain.Models;
 
 /// <summary>
-///     Represents a student entity used for CRUD operations. 
-///     This record acts as a Data Transfer Object (DTO), 
-///     as there is no business logic in the domain.
-/// </summary>//todo change these are models
+///     Represents a student model.
+/// </summary>
 public record StudentModel
 {
     public int Id { get; init; }
